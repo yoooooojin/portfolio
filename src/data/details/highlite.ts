@@ -4,19 +4,39 @@ import type { ProjectDetail } from "../types";
 // 말투 규칙: 개요 · 고민한 점 · 배운 점은 합니다체, 내가 한 일 · 트러블슈팅은 개조식
 const highlite: ProjectDetail = {
   title: "Highlite",
-  tagline: "형광펜 친 강의자료로 시험 문제를 만들어주는 멀티 에이전트 학습 서비스",
+  tagline:
+    "형광펜 친 강의자료로 시험 문제를 만들어주는 멀티 에이전트 학습 서비스",
   period: "2026.03 – 2026.06",
   team: "4명 · 2026-1 캡스톤 (팀 형광단)",
   role: "중요도 분석 에이전트 · 백엔드 기반 설계 · Streamlit UI 구축 · 구글 로그인",
   stack: [
-    { label: "Backend", items: ["FastAPI", "SQLAlchemy (asyncpg)", "Supabase PostgreSQL", "Authlib"], team: ["pgvector"] },
-    { label: "AI", items: ["LangChain", "GPT-4o-mini", "Gemini 2.5"], team: ["Claude Opus 4.5", "GPT-4.1"] },
+    {
+      label: "Backend",
+      items: [
+        "FastAPI",
+        "SQLAlchemy (asyncpg)",
+        "Supabase PostgreSQL",
+        "Authlib",
+      ],
+      team: ["pgvector"],
+    },
+    {
+      label: "AI",
+      items: ["LangChain", "GPT-4o-mini", "Gemini 2.5"],
+      team: ["Claude Opus 4.5", "GPT-4.1"],
+    },
     { label: "Frontend", items: ["Streamlit"] },
   ],
   links: [
     { label: "프로젝트 소개", href: "https://github.com/Team-HyeongGwang" },
-    { label: "Backend", href: "https://github.com/yoooooojin/Highlite-Backend" },
-    { label: "Frontend", href: "https://github.com/highlite2026/Highlite-Frontend" },
+    {
+      label: "Backend",
+      href: "https://github.com/yoooooojin/Highlite-Backend",
+    },
+    {
+      label: "Frontend",
+      href: "https://github.com/highlite2026/Highlite-Frontend",
+    },
   ],
 
   overview: [
@@ -25,9 +45,19 @@ const highlite: ProjectDetail = {
   ],
 
   flow: [
-    { name: "RAG", desc: "Gemini로 OCR·필기 색상 추출, 임베딩을 pgvector에 저장" },
-    { name: "중요도 분석", desc: "텍스트와 필기 표시로 조각마다 0~10점 산정", mine: true },
-    { name: "문제 생성", desc: "중요도 순위별 5:3:2 배분, Claude·GPT 동시 출제" },
+    {
+      name: "RAG",
+      desc: "Gemini로 OCR·필기 색상 추출, 임베딩을 pgvector에 저장",
+    },
+    {
+      name: "중요도 분석",
+      desc: "텍스트와 필기 표시로 조각마다 0~10점 산정",
+      mine: true,
+    },
+    {
+      name: "문제 생성",
+      desc: "중요도 순위별 5:3:2 배분, Claude·GPT 동시 출제",
+    },
     { name: "평가", desc: "룰 기반 검증과 LLM 검수, 반려 시 재생성" },
     { name: "개인화", desc: "오답 조각 우선 배정해 맞춤 재출제" },
   ],
@@ -79,7 +109,12 @@ const highlite: ProjectDetail = {
     badge: "약 90% 단축",
     before: { value: "10", unit: "분+", minutes: 10 },
     after: { value: "1", unit: "분 내외", minutes: 1 },
-    drivers: ["페이지 단위 병렬 요청", "논블로킹 비동기 호출", "결과 수집 후 일괄 저장", "타임아웃 · 재시도"],
+    drivers: [
+      "페이지 단위 병렬 요청",
+      "논블로킹 비동기 호출",
+      "결과 수집 후 일괄 저장",
+      "타임아웃 · 재시도",
+    ],
   },
 
   troubles: [
@@ -176,9 +211,9 @@ if not response:
     {
       title: "좋은 문제가 나오려면 중요도를 어떻게 매겨야 할까",
       body: [
-        "문제 생성 에이전트는 중요도 순위에 따라 5:3:2 비율로 출제 비중을 나눕니다. 따라서 중요도 점수가 정확해야 시험에 나올 만한 문제가 만들어집니다. 프로젝트 기간 동안 이 프롬프트를 가장 많이 고민했습니다.",
-        "처음에는 사용자가 정한 색상 순위에만 가중치를 부여했습니다. 하지만 실제 필기에는 [별표], [시험] 같은 표시와 단순 메모가 섞여 있었습니다. 그래서 표시를 세 등급으로 나누었습니다. 시험·핵심을 뜻하는 최상위 강조, 동그라미·밑줄 같은 시각적 강조, 그리고 점수를 올리지 않는 부연 메모입니다.",
-        "또한 순위를 정하지 않은 색상에는 가중치를 주지 않도록 규칙을 명시했습니다. 순위를 하나도 정하지 않은 사용자도 표시만으로 점수가 매겨지도록 했고, 등급마다 점수 상한을 두어 결과가 한쪽으로 치우치지 않게 했습니다.",
+        "문제 생성 에이전트는 중요도 순위에 따라 5:3:2 비율로 출제 비중을 나눕니다. 그런데 초기에는 중요하지 않은 부분에서도 상당수의 문제가 출제되었습니다. 원인을 살펴보니 형광펜 색상만으로 중요도를 판단하고 있었는데, 실제 필기본에는 형광펜 외에도 별표, '중요'라는 글자, 밑줄처럼 학생이 중요하다고 표시하는 방법이 훨씬 다양했습니다.",
+        "그래서 이런 표시들을 하나씩 반영하며 프롬프트를 고쳐 나갔습니다. 시험·핵심을 뜻하는 최상위 강조, 동그라미·밑줄 같은 시각적 강조, 점수를 올리지 않는 부연 메모의 세 등급으로 나누고, 사용자가 순위를 정하지 않은 색상에는 가중치를 주지 않도록 규칙을 명시했습니다.",
+        "개선 결과는 두 가지 방법으로 확인했습니다. DB에 저장된 결과를 보며 어떤 청크에 높은 중요도가 매겨졌고 문제가 어느 청크에서 생성되었는지를 대조했고, 팀원들이 생성된 문제를 직접 보며 실제 필기의 강조 부분과 비교해 합리적인지 판단했습니다.",
       ],
     },
   ],

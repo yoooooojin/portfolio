@@ -6,6 +6,8 @@
 
 import type { ProjectDetail } from "./types";
 import highlite from "./details/highlite";
+import sookwalk from "./details/sookwalk";
+import swapclass from "./details/swapclass";
 
 export const profile = {
   name: "Yoojin Song",
@@ -118,24 +120,28 @@ export const projects: Project[] = [
     tile: "gray",
   },
   {
-    slug: "swapclass",
-    name: "SwapClass",
-    description:
-      "A course-swap platform that matches students automatically and lets them settle the trade in real-time chat.",
-    role: "Frontend",
-    tech: ["React", "TypeScript", "TanStack Query"],
-    repo: "https://github.com/yoooooojin/31th_1_songwalks_swapclass_front",
-    tile: "blue",
-  },
-  {
     slug: "sookwalk",
+    detail: sookwalk,
     name: "SookWalk",
     description:
       "An Android walking app for Sookmyung students with daily step goals and rankings between colleges.",
     role: "Frontend & Backend",
     tech: ["Kotlin", "Jetpack Compose", "Firebase", "Google Maps API"],
     repo: "https://github.com/yoooooojin/sookwalk-android",
+    image: "/images/sookwalk.png",
     tile: "green",
+  },
+  {
+    slug: "swapclass",
+    detail: swapclass,
+    name: "SwapClass",
+    description:
+      "A course-swap platform that matches students automatically and lets them settle the trade in real-time chat.",
+    role: "Frontend",
+    tech: ["React", "TypeScript", "TanStack Query"],
+    repo: "https://github.com/yoooooojin/31th_1_songwalks_swapclass_front",
+    image: "/images/swapclass.png",
+    tile: "blue",
   },
 ];
 
