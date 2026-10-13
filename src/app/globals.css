@@ -13,6 +13,7 @@
   --shadow: 0 18px 40px -24px rgba(25, 50, 110, 0.32);
   --nav-bg: rgba(255, 255, 255, 0.86);
   --glow: rgba(42, 100, 224, 0.1);
+  --mark: rgba(42, 100, 224, 0.06);
 
   --f-display:
     var(--font-display), var(--font-kr), "Figtree", system-ui, sans-serif;
@@ -35,6 +36,7 @@
   --shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.7);
   --nav-bg: rgba(15, 19, 25, 0.86);
   --glow: rgba(110, 166, 255, 0.12);
+  --mark: rgba(110, 166, 255, 0.07);
   color-scheme: dark;
 }
 
@@ -773,6 +775,57 @@ footer a:hover {
 }
 .proj-links {
   align-items: center;
+}
+
+/* ---------- 섹션 번호 워터마크 (메인 화면) ---------- */
+main {
+  overflow-x: clip;
+}
+main > section[id] {
+  position: relative;
+}
+main > section[id]::before {
+  position: absolute;
+  top: 40px;
+  right: -60px;
+  z-index: -1;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: 240px;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: var(--mark);
+  pointer-events: none;
+  user-select: none;
+}
+#about::before {
+  content: "01";
+}
+#experience::before {
+  content: "02";
+  left: -90px;
+  right: auto;
+}
+#work::before {
+  content: "03";
+}
+#contact::before {
+  content: "04";
+  left: -90px;
+  right: auto;
+  top: 0;
+}
+@media (max-width: 820px) {
+  main > section[id]::before {
+    font-size: 140px;
+    top: 60px;
+    right: 0;
+  }
+  #experience::before,
+  #contact::before {
+    left: 0;
+    right: auto;
+  }
 }
 
 /* ---------- case study page ---------- */
