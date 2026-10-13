@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Figtree, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Figtree, JetBrains_Mono, IBM_Plex_Sans_KR } from "next/font/google";
 import "./globals.css";
 
 const display = Bricolage_Grotesque({
@@ -18,6 +18,13 @@ const mono = JetBrains_Mono({
   variable: "--font-mono",
 });
 
+// 한글용 폰트: IBM Plex Sans KR. 용량이 커서 미리 불러오지 않아요
+const korean = IBM_Plex_Sans_KR({
+  weight: ["400", "500", "700"],
+  preload: false,
+  variable: "--font-kr",
+});
+
 export const metadata: Metadata = {
   title: "Yoojin Song",
   description: "Yoojin Song — backend developer studying Computer Science at Sookmyung Women's University.",
@@ -31,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       data-theme="light"
-      className={`${display.variable} ${body.variable} ${mono.variable}`}
+      className={`${display.variable} ${body.variable} ${mono.variable} ${korean.variable}`}
       suppressHydrationWarning
     >
       <head>

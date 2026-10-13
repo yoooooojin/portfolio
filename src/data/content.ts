@@ -4,6 +4,9 @@
 //  경로를 "/images/파일이름.png" 처럼 적어주세요.
 // ─────────────────────────────────────────────────────────────
 
+import type { ProjectDetail } from "./types";
+import highlite from "./details/highlite";
+
 export const profile = {
   name: "Yoojin Song",
   initials: "YS",
@@ -82,11 +85,15 @@ export const jobs: Job[] = [
     title: "Member",
     org: "ALGOS",
     range: "2025.03 — Present",
-    points: ["Studying algorithms and problem solving in C++ with a programming club."],
+    points: [
+      "Studying algorithms and problem solving in C++ with a programming club.",
+    ],
   },
 ];
 
 export type Project = {
+  slug: string; // 상세 페이지 주소: /projects/slug
+  detail?: ProjectDetail; // 상세 페이지 내용 (src/data/details/). 없으면 카드는 GitHub로 연결돼요
   name: string;
   description: string;
   role: string;
@@ -99,15 +106,19 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "highlite",
+    detail: highlite,
     name: "Highlite",
     description:
       "A multi-agent service that reads the parts you highlighted in lecture PDFs and generates exam questions from them.",
     role: "Importance Analysis Agent · Frontend UI",
     tech: ["FastAPI", "PostgreSQL", "LangChain", "GPT", "Streamlit"],
     repo: "https://github.com/yoooooojin/Highlite-Backend",
+    image: "/images/highlite.png",
     tile: "gray",
   },
   {
+    slug: "swapclass",
     name: "SwapClass",
     description:
       "A course-swap platform that matches students automatically and lets them settle the trade in real-time chat.",
@@ -117,6 +128,7 @@ export const projects: Project[] = [
     tile: "blue",
   },
   {
+    slug: "sookwalk",
     name: "SookWalk",
     description:
       "An Android walking app for Sookmyung students with daily step goals and rankings between colleges.",

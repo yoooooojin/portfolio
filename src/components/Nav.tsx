@@ -5,10 +5,10 @@ import { profile } from "@/data/content";
 import { MoonIcon, SunIcon } from "./Icons";
 
 const sections = [
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#work", label: "Work" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#work", label: "Work" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Nav() {
@@ -40,7 +40,7 @@ export default function Nav() {
 
   return (
     <header className={`topnav${scrolled ? " scrolled" : ""}${hidden ? " hide" : ""}`}>
-      <a className="logo" href="#top" aria-label="Back to top">
+      <a className="logo" href="/" aria-label="Back to top">
         {profile.initials}
       </a>
       <nav aria-label="Sections">
