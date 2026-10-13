@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Figtree, JetBrains_Mono, IBM_Plex_Sans_KR } from "next/font/google";
+import {
+  Bricolage_Grotesque,
+  Figtree,
+  JetBrains_Mono,
+  IBM_Plex_Sans_KR,
+} from "next/font/google";
 import "./globals.css";
 
 const display = Bricolage_Grotesque({
@@ -27,16 +32,21 @@ const korean = IBM_Plex_Sans_KR({
 
 export const metadata: Metadata = {
   title: "Yoojin Song",
-  description: "Yoojin Song — backend developer studying Computer Science at Sookmyung Women's University.",
+  description:
+    "숙명여자대학교 컴퓨터과학전공 백엔드 개발자 송유진의 포트폴리오",
 };
 
 // 첫 화면이 그려지기 전에 저장된 테마를 적용해서 깜빡임을 막아요. 기본값은 라이트.
 const themeScript = `(function(){var t='light';try{t=localStorage.getItem('ys-theme')||'light'}catch(e){}document.documentElement.setAttribute('data-theme',t)})();`;
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
-      lang="en"
+      lang="ko"
       data-theme="light"
       className={`${display.variable} ${body.variable} ${mono.variable} ${korean.variable}`}
       suppressHydrationWarning

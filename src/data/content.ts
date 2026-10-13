@@ -25,13 +25,13 @@ export const profile = {
 
 // 첫 화면 소개 문장. **굵게** 표시한 부분은 진하게 나와요.
 export const heroIntro =
-  "I'm a **backend developer** studying Computer Science at **Sookmyung Women's University**. Right now I'm researching **multimodal recommendation systems** and building server-side features with SOLUX.";
+  "숙명여자대학교에서 컴퓨터과학을 전공하는 **백엔드 개발자**입니다. 지금은 산학협력 프로젝트에서 **멀티모달 추천 시스템**을 연구하고, SOLUX에서 서버 개발을 하고 있습니다.";
 
 // About 섹션 문단들 (**굵게** 사용 가능)
 export const about = [
-  "Hello! I'm Yoojin, a Computer Science student at **Sookmyung Women's University**. I started out curious about how apps keep data in sync, and that curiosity turned into a focus on **backend development**.",
-  "Since then I've built a course-swap platform, a multi-agent study tool, and a walking app for my campus. I've also worked as a QA intern at goorm, which taught me to look at a service from the user's side.",
-  "I enjoy **growing together with my team** through collaboration and code review. Here are the technologies I've been working with recently:",
+  "안녕하세요! **숙명여자대학교 컴퓨터과학전공** 송유진입니다. 지금은 **백엔드 개발**에 집중하고 있습니다.",
+  "강의자료의 필기를 분석해 시험 문제를 만드는 멀티 에이전트 서비스, 걸음 수 목표와 단과대 랭킹을 담은 산책 앱, 수강신청 강의 교환 플랫폼을 팀원들과 함께 만들었습니다. 구름(goorm)에서는 QA 인턴으로 서비스를 사용자 입장에서 꼼꼼히 살펴보는 경험을 했습니다.",
+  "협업과 코드 리뷰를 통해 **팀과 함께 성장하는 것**을 좋아합니다. 최근에 주로 사용한 기술은 다음과 같습니다.",
 ];
 
 export const skills = [
@@ -58,8 +58,8 @@ export const jobs: Job[] = [
     org: "Industry–Academia Project",
     range: "2026.09 — Present",
     points: [
-      "Researching a multimodal recommendation system that combines several kinds of input data.",
-      "Writing a research paper on the approach and its results.",
+      "여러 형태의 입력 데이터를 함께 활용하는 멀티모달 추천 시스템 연구",
+      "연구 내용과 결과를 바탕으로 논문 작성",
     ],
   },
   {
@@ -68,8 +68,8 @@ export const jobs: Job[] = [
     org: "SOLUX",
     range: "2026.03 — Present",
     points: [
-      "Building server-side features for the club's team projects.",
-      "Taking part in code reviews and sharing what I learn with teammates.",
+      "동아리 팀 프로젝트의 서버 기능 개발",
+      "코드 리뷰에 참여하며 팀원들과 학습 내용 공유",
     ],
   },
   {
@@ -78,8 +78,8 @@ export const jobs: Job[] = [
     org: "goorm",
     range: "2026.02 · Strategy Force",
     points: [
-      "Performed QA testing on the company's services.",
-      "Found and reported issues so they could be fixed before release.",
+      "회사 서비스의 QA 테스트 수행",
+      "출시 전 문제를 찾아 보고해 수정될 수 있도록 지원",
     ],
   },
   {
@@ -87,9 +87,7 @@ export const jobs: Job[] = [
     title: "Member",
     org: "ALGOS",
     range: "2025.03 — Present",
-    points: [
-      "Studying algorithms and problem solving in C++ with a programming club.",
-    ],
+    points: ["C++ 프로그래밍 동아리에서 알고리즘과 문제 해결 스터디"],
   },
 ];
 
@@ -112,8 +110,8 @@ export const projects: Project[] = [
     detail: highlite,
     name: "Highlite",
     description:
-      "A multi-agent service that reads the parts you highlighted in lecture PDFs and generates exam questions from them.",
-    role: "Importance Analysis Agent · Frontend UI",
+      "강의자료 PDF에 표시한 형광펜과 필기를 분석해 시험 문제를 자동으로 만들어 주는 멀티 에이전트 서비스입니다.",
+    role: "중요도 분석 에이전트 · 백엔드 기반 설계 · UI",
     tech: ["FastAPI", "PostgreSQL", "LangChain", "GPT", "Streamlit"],
     repo: "https://github.com/yoooooojin/Highlite-Backend",
     image: "/images/highlite.png",
@@ -124,8 +122,8 @@ export const projects: Project[] = [
     detail: sookwalk,
     name: "SookWalk",
     description:
-      "An Android walking app for Sookmyung students with daily step goals and rankings between colleges.",
-    role: "Frontend & Backend",
+      "걸음 수 목표와 단과대 · 학과 대항 랭킹으로 꾸준히 걷도록 돕는 숙명여대생 전용 산책 앱입니다.",
+    role: "걸음 수 측정 · Firestore 동기화 · 목표 · 지도",
     tech: ["Kotlin", "Jetpack Compose", "Firebase", "Google Maps API"],
     repo: "https://github.com/yoooooojin/sookwalk-android",
     image: "/images/sookwalk.png",
@@ -136,8 +134,8 @@ export const projects: Project[] = [
     detail: swapclass,
     name: "SwapClass",
     description:
-      "A course-swap platform that matches students automatically and lets them settle the trade in real-time chat.",
-    role: "Frontend",
+      "조건이 맞는 상대를 자동으로 추천하고 실시간 채팅으로 교환을 돕는 수강신청 강의 교환 플랫폼입니다.",
+    role: "프론트엔드 · 프로젝트 기반 설정",
     tech: ["React", "TypeScript", "TanStack Query"],
     repo: "https://github.com/yoooooojin/31th_1_songwalks_swapclass_front",
     image: "/images/swapclass.png",
@@ -147,5 +145,5 @@ export const projects: Project[] = [
 
 export const contact = {
   heading: "Get In Touch",
-  text: "I'm looking for internships and team projects in backend development. Whether you have a question or just want to say hi, I'll get back to you.",
+  text: "백엔드 개발 인턴십과 팀 프로젝트 기회를 찾고 있습니다. 궁금한 점이 있거나 이야기를 나누고 싶다면 편하게 연락 주세요.",
 };
