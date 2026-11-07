@@ -55,7 +55,7 @@ const swapclass: ProjectDetail = {
 
   contributions: [
     {
-      title: "프로젝트 기반 설정 (단독 담당)",
+      title: "프로젝트 기반 설정",
       points: [
         "Vite · TypeScript 프로젝트 초기 구성, ESLint · oxlint · Prettier · Husky(lint-staged)로 커밋 전 코드 검사 자동화",
         "React Router 라우팅과 레이아웃 체계(Root · Default · FullScreen, Header, BottomNav) 설계",
