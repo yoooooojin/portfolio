@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { about, profile, skills } from "@/data/content";
+import { about, certs, profile, skills } from "@/data/content";
 import Rich from "./Rich";
 
 export default function About() {
@@ -20,11 +20,23 @@ export default function About() {
               <li key={s}>{s}</li>
             ))}
           </ul>
+          <p className="sublabel">Certifications</p>
+          <ul className="skills">
+            {certs.map((c) => (
+              <li key={c}>{c}</li>
+            ))}
+          </ul>
         </div>
         <div className="photo" data-reveal="scale">
           <div className="frame">
             {profile.photo ? (
-              <Image src={profile.photo} alt={profile.name} fill sizes="300px" style={{ objectFit: "cover" }} />
+              <Image
+                src={profile.photo}
+                alt={profile.name}
+                fill
+                sizes="300px"
+                style={{ objectFit: "cover" }}
+              />
             ) : (
               <>
                 <span>{profile.initials}</span>

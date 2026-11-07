@@ -40,8 +40,9 @@ export const skills = [
   "Python · FastAPI",
   "PostgreSQL · Oracle",
   "TypeScript · React",
-  "AWS · GitHub Actions",
 ];
+
+export const certs = ["정보처리기사", "SQLD", "ADsP", "TOEIC 920"];
 
 export type Job = {
   tab: string; // 왼쪽 탭에 보이는 짧은 이름

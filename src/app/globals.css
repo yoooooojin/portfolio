@@ -406,6 +406,25 @@ section {
   left: 0;
   color: var(--accent);
 }
+.about-grid .sublabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 40px 0 0;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  color: var(--accent);
+}
+.about-grid .sublabel::after {
+  content: "";
+  flex: 1;
+  max-width: 160px;
+  height: 1px;
+  background: var(--line);
+}
+.sublabel + .skills {
+  margin-top: 14px;
+}
 .photo {
   position: relative;
   max-width: 300px;
