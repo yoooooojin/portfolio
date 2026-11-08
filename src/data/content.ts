@@ -38,7 +38,7 @@ export const skills = [
   "Java · Kotlin",
   "Spring Boot",
   "Python · FastAPI",
-  "PostgreSQL · Oracle",
+  "PostgreSQL · Oracle · MySQL",
   "TypeScript · React",
 ];
 
