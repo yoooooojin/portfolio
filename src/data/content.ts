@@ -38,8 +38,9 @@ export const skills = [
   "Java · Kotlin",
   "Spring Boot",
   "Python · FastAPI",
-  "PostgreSQL · Oracle · MySQL",
   "TypeScript · React",
+  "PostgreSQL · MySQL",
+  "Oracle",
 ];
 
 export const certs = ["정보처리기사", "SQLD", "ADsP", "TOEIC 920"];

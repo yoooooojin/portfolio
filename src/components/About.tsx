@@ -15,17 +15,6 @@ export default function About() {
               <Rich text={p} />
             </p>
           ))}
-          <ul className="skills">
-            {skills.map((s) => (
-              <li key={s}>{s}</li>
-            ))}
-          </ul>
-          <p className="sublabel">Certifications</p>
-          <ul className="skills">
-            {certs.map((c) => (
-              <li key={c}>{c}</li>
-            ))}
-          </ul>
         </div>
         <div className="photo" data-reveal="scale">
           <div className="frame">
@@ -44,6 +33,19 @@ export default function About() {
               </>
             )}
           </div>
+        </div>
+        <div className="about-lists" data-reveal="">
+          <ul className="skills">
+            {skills.map((s) => (
+              <li key={s}>{s}</li>
+            ))}
+          </ul>
+          <p className="sublabel">Certifications</p>
+          <ul className="skills certs">
+            {certs.map((c) => (
+              <li key={c}>{c}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
