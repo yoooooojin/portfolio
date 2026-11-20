@@ -894,6 +894,8 @@ main > section[id]::before {
   max-width: 34em;
   text-wrap: balance;
   line-height: 1.55;
+  white-space: pre-line; /* 문장 안의 \n에서 줄바꿈 */
+  word-break: keep-all; /* 한글 단어 중간에서 줄바꿈하지 않음 */
 }
 .facts {
   display: grid;

@@ -8,6 +8,7 @@ import type { ProjectDetail } from "./types";
 import highlite from "./details/highlite";
 import sookwalk from "./details/sookwalk";
 import swapclass from "./details/swapclass";
+import shhpoil from "./details/shhpoil";
 
 export const profile = {
   name: "Yoojin Song",
@@ -30,7 +31,7 @@ export const heroIntro =
 // About 섹션 문단들 (**굵게** 사용 가능)
 export const about = [
   "안녕하세요! **숙명여자대학교 컴퓨터과학전공** 송유진입니다. 지금은 **백엔드 개발**에 집중하고 있습니다.",
-  "강의자료의 필기를 분석해 시험 문제를 만드는 멀티 에이전트 서비스, 걸음 수 목표와 단과대 랭킹을 담은 산책 앱, 수강신청 강의 교환 플랫폼을 팀원들과 함께 만들었습니다. 구름(goorm)에서는 QA 인턴으로 서비스를 사용자 입장에서 꼼꼼히 살펴보는 경험을 했습니다.",
+  "강의자료의 필기를 분석해 시험 문제를 만드는 멀티 에이전트 서비스, 걸음 수 목표와 단과대 랭킹을 담은 산책 앱, 수강신청 강의 교환 플랫폼을 팀원들과 함께 만들었습니다. 최근에는 안 본 회차의 스포일러만 가려 주는 크롬 확장 에이전트 **쉿스포(Shhpoil)**로 해커톤에서 우승했습니다. 구름(goorm)에서는 QA 인턴으로 서비스를 사용자 입장에서 꼼꼼히 살펴보는 경험을 했습니다.",
   "협업과 코드 리뷰를 통해 **팀과 함께 성장하는 것**을 좋아합니다. 최근에 주로 사용한 기술은 다음과 같습니다.",
 ];
 
@@ -54,6 +55,17 @@ export type Job = {
 };
 
 export const jobs: Job[] = [
+  {
+    tab: "Hackathon",
+    title: "Track 1 Winner",
+    org: "TRILLION AGENT AI HACKATHON 2026",
+    range: "2026.11",
+    points: [
+      "안 본 회차의 스포일러만 가리는 크롬 확장 에이전트 ‘쉿스포(Shhpoil)’로 Track 1 우승",
+      "2인 팀에서 관찰 · 행동 · 학습 에이전트와 크롬 확장 전체 담당",
+      "판단 엔진이 응답하지 않으면 키워드 방식으로 대신 가리고, 엔진이 돌아오면 자동 복귀하도록 구성",
+    ],
+  },
   {
     tab: "Research Project",
     title: "Researcher",
@@ -112,6 +124,7 @@ export type Project = {
   demo?: string; // 배포된 데모 주소가 있으면 적어주세요
   image?: string; // 스크린샷: 예) "/images/highlite.png" — 없으면 색 타일
   tile: "gray" | "blue" | "green"; // 스크린샷이 없을 때 타일 색
+  overline?: string; // 카드 위 작은 파란 글씨 (없으면 "Featured Project")
 };
 
 export const projects: Project[] = [
@@ -126,6 +139,19 @@ export const projects: Project[] = [
     repo: "https://github.com/yoooooojin/Highlite-Backend",
     image: "/images/highlite.png",
     tile: "gray",
+  },
+  {
+    slug: "shhpoil",
+    detail: shhpoil,
+    name: "Shhpoil",
+    description:
+      "내가 본 회차까지만 보여주는 스포일러 판정 에이전트입니다. 유튜브 · X · 넷플릭스에서 안 본 회차 내용만 가려 주는 크롬 확장으로, TRILLION AGENT AI HACKATHON 2026 Track 1 우승작입니다.",
+    role: "관찰 · 행동 · 학습 에이전트 · 크롬 확장",
+    tech: ["JavaScript", "Chrome MV3", "Python", "Zoro-1"],
+    repo: "https://github.com/yoooooojin/shhpoil",
+    image: "/images/shhpoil.png",
+    tile: "gray",
+    overline: "Track 1 Winner · AI Hackathon 2026",
   },
   {
     slug: "sookwalk",
