@@ -44,7 +44,7 @@ export const skills = [
   "Oracle",
 ];
 
-export const certs = ["정보처리기사", "SQLD", "ADsP", "TOEIC 920"];
+export const certs = ["정보처리기사", "SQLD", "ADsP", "TOEIC 930"];
 
 export type Job = {
   tab: string; // 왼쪽 탭에 보이는 짧은 이름
