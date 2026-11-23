@@ -145,7 +145,7 @@ export const projects: Project[] = [
     detail: shhpoil,
     name: "Shhpoil",
     description:
-      "내가 본 회차까지만 보여주는 스포일러 판정 에이전트입니다. 유튜브 · X · 넷플릭스에서 안 본 회차 내용만 가려 주는 크롬 확장으로, TRILLION AGENT AI HACKATHON 2026 Track 1 우승작입니다.",
+      "내가 본 회차까지만 보여주는 스포일러 판정 에이전트입니다. 유튜브 · X에서 안 본 회차 내용만 가려 주는 크롬 확장으로, TRILLION AGENT AI HACKATHON 2026 Track 1 우승작입니다.",
     role: "관찰 · 행동 · 학습 에이전트 · 크롬 확장",
     tech: ["JavaScript", "Chrome MV3", "Python", "Zoro-1"],
     repo: "https://github.com/yoooooojin/shhpoil",

@@ -59,13 +59,13 @@ const swapclass: ProjectDetail = {
       points: [
         "Vite · TypeScript 프로젝트 초기 구성, ESLint · oxlint · Prettier · Husky(lint-staged)로 커밋 전 코드 검사 자동화",
         "React Router 라우팅과 레이아웃 체계(Root · Default · FullScreen, Header, BottomNav) 설계",
-        "Button · Input · Modal · Toast · Tabs · Skeleton 등 공통 컴포넌트 16종 구현",
+        "Button · Input · Modal · Toast · Tabs · Skeleton 등 공통 컴포넌트 18종 구현 (초기 15종 + 이후 FilterChip · NotificationBell · PostCard)",
       ],
     },
     {
       title: "API 클라이언트와 인증 처리",
       points: [
-        "Axios 인스턴스와 인터셉터로 토큰 자동 첨부, 401 · 403 응답 공통 처리",
+        "Axios 인스턴스와 인터셉터로 토큰 자동 첨부, axios로 보내는 요청의 401 · 403 응답 공통 처리",
         "백엔드 완성 전 MSW로 API 명세 기반 목 서버를 만들어 프론트 개발을 병행",
       ],
     },
@@ -128,7 +128,7 @@ axiosInstance.interceptors.response.use(undefined, (error) => {
         "읽지 않은 알림 수를 상위 컴포넌트에서 한 번만 받아 props로 내려, 화면을 이동해도 값이 그대로 남음",
       ],
       solution: [
-        "헤더가 직접 읽지 않은 알림 수 API를 호출하고, 경로가 바뀔 때마다 다시 조회하도록 변경",
+        "읽지 않은 알림 수를 직접 조회하는 알림 컴포넌트를 만들어 각 화면 헤더에 배치, 화면에 들어갈 때마다 컴포넌트가 다시 마운트되며 새로 조회",
         "토큰이 없으면 호출 자체를 건너뛰어 불필요한 요청 제거",
       ],
     },
@@ -138,7 +138,7 @@ axiosInstance.interceptors.response.use(undefined, (error) => {
         "라운지 검색어를 Zustand 전역 스토어에 두어, 과목 검색 화면에서 입력한 검색어가 라운지에도 그대로 적용됨",
       ],
       solution: [
-        "화면 밖에서 쓸 일이 없는 검색어는 컴포넌트 지역 상태로 옮기고, 전역 스토어에는 여러 화면이 공유해야 하는 값만 남김",
+        "과목 검색 화면의 검색어를 컴포넌트 지역 상태(useState)로 분리해, 라운지 검색어만 전역 스토어에 남김",
       ],
     },
   ],

@@ -51,7 +51,7 @@ const highlite: ProjectDetail = {
     },
     {
       name: "중요도 분석",
-      desc: "텍스트와 필기 표시로 조각마다 0~10점 산정",
+      desc: "필기 태그 위계와 색상 순위를 채점 규칙으로, LLM이 조각마다 0~10점 산정",
       mine: true,
     },
     {
@@ -66,9 +66,9 @@ const highlite: ProjectDetail = {
     {
       title: "중요도 분석 에이전트",
       points: [
-        "본문, 형광펜·펜 색상, [별표]·[밑줄] 등 필기 표시를 근거로 0~10점 중요도 산정",
+        "필기 태그 3단계 위계([별표]·[중요] > [밑줄]·[동그라미] > [필기])를 채점 규칙으로 설계, LLM이 0~10점 산정",
         "사용자가 설정한 색상별 중요도 순위(최대 3개)를 가중치로 반영하는 프롬프트 설계",
-        "Structured Output으로 점수·근거·키워드·요약을 받아 DB에 저장",
+        "점수는 코드가 아니라 LLM이 매기도록 하고, Structured Output으로 점수·근거·키워드·요약을 받아 DB에 저장",
       ],
     },
     {
@@ -88,7 +88,7 @@ const highlite: ProjectDetail = {
     {
       title: "구글 로그인 · 마이페이지",
       points: [
-        "Authlib 기반 구글 OAuth 로그인과 JWT 발급",
+        "Authlib 기반 구글 OAuth 로그인",
         "닉네임 수정, 회원 탈퇴 API 구현",
         "로그인 시마다 계정을 선택하도록 개선 (prompt=select_account)",
       ],
@@ -96,8 +96,8 @@ const highlite: ProjectDetail = {
     {
       title: "Streamlit UI 구축",
       points: [
-        "팀원의 와이어프레임을 바탕으로 앱 전체 화면 직접 구현",
-        "로그인 · 업로드 · 문서 라이브러리 · 문제 풀이 · 오답 노트 · 내보내기 · 마이페이지",
+        "팀원의 와이어프레임을 바탕으로 로그인 · 업로드 · 마이페이지 화면과 앱 진입(app.py) 구현",
+        "복습 · 퀴즈 화면 일부 작업 (라이브러리 · 퀴즈 · 내보내기 화면은 팀원 담당)",
         "백엔드 API 연동, 구글 로그인과 세션 기반 인증 흐름 구현",
       ],
     },
@@ -105,7 +105,8 @@ const highlite: ProjectDetail = {
 
   result: {
     title: "파이프라인 처리 시간",
-    caption: "51쪽 강의자료 기준 · PDF 추출부터 중요도 분석 완료까지",
+    caption:
+      "51쪽 강의자료 기준 · PDF 추출부터 중요도 분석 완료까지 · 병렬화 이후 팀원의 캐싱 · 모델 전환까지 적용한 결과",
     badge: "약 90% 단축",
     before: { value: "10", unit: "분+", minutes: 10 },
     after: { value: "1", unit: "분 내외", minutes: 1 },
@@ -114,20 +115,21 @@ const highlite: ProjectDetail = {
       "논블로킹 비동기 호출",
       "결과 수집 후 일괄 저장",
       "타임아웃 · 재시도",
+      "Gemini 캐싱 · Flash 전환 (팀원)",
     ],
   },
 
   troubles: [
     {
-      title: "PDF 추출 중 API 과부하와 무한 대기",
+      title: "페이지를 하나씩 추출해 오래 걸리는 문제",
       problem: [
-        "51쪽 슬라이드를 한 번에 Gemini API로 요청 시 503(UNAVAILABLE) · 429 에러 발생",
-        "LangChain 내부 지수 백오프 재시도와 겹치며 처리 시간 10분 이상으로 증가",
+        "PDF를 페이지별 이미지로 바꿔 한 장씩 차례로 Gemini에 요청해, 앞 페이지 응답이 와야 다음 페이지를 요청함",
+        "51쪽 강의자료면 51번의 응답을 순서대로 기다려야 함",
       ],
       solution: [
-        "5장씩 묶어 보내던 방식을 폐기하고 1장 단위 요청으로 분리",
-        "asyncio.Semaphore로 동시 요청 수를 제한하며 병렬 처리",
-        "해상도(DPI) 150 유지로 속도와 추출 정확도 동시 확보",
+        "페이지 요청을 asyncio.gather로 동시에 보내고, asyncio.Semaphore로 동시 요청 수를 제한",
+        "이미지 해상도를 200에서 150 DPI로 낮춰 요청 크기를 줄임",
+        "이후 팀원이 API 과부하(503 · 429)에 대비해 동시 요청 수를 25개로 줄이고, Pro 모델이 막히면 Flash로 전환하도록 보완",
       ],
       code: `semaphore = asyncio.Semaphore(50)
 
@@ -179,7 +181,7 @@ await session.commit()`,
       ],
       solution: [
         "asyncio.wait_for로 요청별 20초 타임아웃 적용 (Fail-Fast)",
-        "최대 3회 재시도, 통신 에러는 5초 · 10초로 대기 시간을 늘려 재시도",
+        "총 3번까지 시도, 타임아웃이면 바로 다시 시도하고 그 외 통신 에러는 5초 · 10초로 대기 시간을 늘려 재시도",
         "최종 실패 청크는 0점 기본값으로 처리해 전체 흐름 유지",
       ],
       code: `for attempt in range(MAX_RETRIES):
@@ -193,17 +195,6 @@ await session.commit()`,
 
 if not response:
     response = ImportanceResponse(score=0.0, reasoning="API 분석 실패", ...)`,
-    },
-    {
-      title: "대량 Structured Output 요청 시 잦은 타임아웃",
-      problem: [
-        "청크마다 JSON 구조화 응답이 필요한 중요도 분석에서 Gemini의 동시 요청 타임아웃 빈발",
-      ],
-      solution: [
-        "JSON 생성 안정성이 높은 OpenAI gpt-4o-mini로 모델 교체",
-        "동시 처리량 확대",
-      ],
-      result: ["120개 이상의 청크 중요도 분석을 수십 초 내 완료"],
     },
   ],
 
