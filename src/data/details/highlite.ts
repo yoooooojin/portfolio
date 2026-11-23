@@ -157,14 +157,14 @@ response = chain.invoke({...})
 response = await chain.ainvoke({...})`,
     },
     {
-      title: "단일 DB 세션 동시 접근으로 파이프라인 정지",
+      title: "진짜 동시 실행이 되자 드러난 세션 공유 문제",
       problem: [
-        "분석을 마친 120여 개 비동기 태스크가 하나의 세션에 동시에 session.add() 시도",
-        "세션 충돌로 파이프라인 전체가 멈춤",
+        "invoke()를 쓸 때는 태스크가 사실상 하나씩 실행돼 드러나지 않았지만, ainvoke()로 바꾸자 120여 개 태스크가 하나의 AsyncSession을 동시에 사용",
+        "AsyncSession은 여러 태스크가 동시에 쓰기에 안전하지 않음",
       ],
       solution: [
         "LLM 호출(병렬)과 DB 저장(순차)의 역할 분리",
-        "asyncio.gather로 분석 결과를 먼저 수집한 뒤, 한 곳에서 순차 add 후 단일 commit",
+        "분석 태스크는 결과만 반환하고, asyncio.gather로 모은 뒤 한 곳에서 순차 add 후 단일 commit",
       ],
       code: `# 1. 분석은 병렬로, 결과만 수집
 llm_results = await asyncio.gather(*tasks)
