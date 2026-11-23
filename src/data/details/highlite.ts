@@ -88,8 +88,8 @@ const highlite: ProjectDetail = {
     {
       title: "구글 로그인 · 마이페이지",
       points: [
-        "Authlib 기반 구글 OAuth 로그인",
-        "닉네임 수정, 회원 탈퇴 API 구현",
+        "Authlib 기반 구글 OAuth 로그인, JWT 발급 · 검증",
+        "닉네임 수정, 회원 탈퇴 API 구현 (토큰의 사용자만 대상으로 동작)",
         "로그인 시마다 계정을 선택하도록 개선 (prompt=select_account)",
       ],
     },
@@ -195,6 +195,33 @@ await session.commit()`,
 
 if not response:
     response = ImportanceResponse(score=0.0, reasoning="API 분석 실패", ...)`,
+    },
+    {
+      title: "토큰을 검증하지 않아 다른 사람 계정도 바꿀 수 있던 문제 (프로젝트 종료 후 보완)",
+      problem: [
+        "로그인 시 JWT를 발급만 하고 서버에서 검증하지 않아, 닉네임 수정 · 회원 탈퇴 API가 요청 body의 이메일만 믿고 동작함",
+        "다른 사람의 이메일만 알면 그 계정의 닉네임을 바꾸거나 탈퇴시킬 수 있었음",
+        "JWT 서명 키에 공개 레포에 적힌 기본값이 있어, 설정이 없으면 누구나 토큰을 만들 수 있었음",
+      ],
+      solution: [
+        "Authorization 헤더의 토큰을 검증(서명 · 만료)해 사용자를 꺼내는 get_current_user 의존성 추가",
+        "두 API가 body의 이메일 대신 토큰의 사용자를 대상으로 동작하도록 변경",
+        "서명 키 기본값을 없애 환경 변수가 없으면 서버가 실행되지 않게 함",
+        "프론트 요청에 토큰을 싣고, 탈퇴 후 로그인 쿠키가 남던 문제도 함께 수정해 팀 레포에 PR로 반영 (Backend #85 · Frontend #45)",
+      ],
+      code: `async def get_current_user(
+    cred: HTTPAuthorizationCredentials = Depends(security),
+    db: AsyncSession = Depends(get_db),
+) -> models.User:
+    try:
+        payload = jwt.decode(cred.credentials, JWT_SECRET_KEY, algorithms=["HS256"])
+    except jwt.PyJWTError:
+        raise HTTPException(status_code=401, detail="로그인이 만료되었거나 유효하지 않습니다.")
+    ...
+
+@router.delete("/account")
+async def delete_account(user: models.User = Depends(get_current_user), ...):
+    await db.execute(delete(models.User).where(models.User.id == user.id))`,
     },
   ],
 
