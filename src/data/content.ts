@@ -62,7 +62,7 @@ export const jobs: Job[] = [
     range: "2026.11",
     points: [
       "안 본 회차의 스포일러만 가리는 크롬 확장 에이전트 ‘쉿스포(Shhpoil)’로 Track 1 우승",
-      "2인 팀에서 관찰 · 행동 · 학습 에이전트와 크롬 확장 전체 담당",
+      "2인 팀에서 에이전트의 관찰 · 행동 · 학습 단계(크롬 확장) 담당, 판단 엔진은 팀원 담당",
       "판단 엔진이 응답하지 않으면 키워드 방식으로 대신 가리고, 엔진이 돌아오면 자동 복귀하도록 구성",
     ],
   },
@@ -146,7 +146,7 @@ export const projects: Project[] = [
     name: "Shhpoil",
     description:
       "내가 본 회차까지만 보여주는 스포일러 판정 에이전트입니다. 유튜브 · X에서 안 본 회차 내용만 가려 주는 크롬 확장으로, TRILLION AGENT AI HACKATHON 2026 Track 1 우승작입니다.",
-    role: "관찰 · 행동 · 학습 에이전트 · 크롬 확장",
+    role: "에이전트의 관찰 · 행동 · 학습 단계 · 크롬 확장",
     tech: ["JavaScript", "Chrome MV3", "Python", "Zoro-1"],
     repo: "https://github.com/yoooooojin/shhpoil",
     image: "/images/shhpoil.png",
